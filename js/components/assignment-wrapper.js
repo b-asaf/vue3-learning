@@ -1,14 +1,14 @@
 import AssignmentList from "./assignment-list.js";
-import AddAssignmentForm from "./add-assignment-form.js";
+import AssignmentAddForm from "./assignment-add-form.js";
 
 export default {
-  components: { AssignmentList, AddAssignmentForm },
+  components: { AssignmentList, AssignmentAddForm },
   template: `
     <section class="space-y-6">
       <AssignmentList :assignments="filters.inProgress" title="In Progress"></AssignmentList>
       <AssignmentList :assignments="filters.completed" title="Completed"></AssignmentList>
       
-      <AddAssignmentForm v-on:add-assignment="add"></AddAssignmentForm>
+      <AssignmentAddForm v-on:add-assignment="add"></AssignmentAddForm>
     </section>
 
   `,
