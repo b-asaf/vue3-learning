@@ -2,45 +2,12 @@
 <html lang="eng" class="h-full">
   <head>
     <meta charset="utf-8" />
-    <title>Episode 6</title>
+    <title>Episode 7</title>
     <script src="https://unpkg.com/vue@3"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      @keyframes spinner {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      .is-loading {
-        color: transparent;
-      }
-
-      .is-loading:before {
-        content: "";
-        box-sizing: border-box;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 20px;
-        height: 20px;
-        margin-top: -10px;
-        margin-left: -10px;
-        border-radius: 50%;
-        border: 2px solid #ccc;
-        border-top-color: #000;
-        animation: spinner 0.6s linear infinite;
-      }
-    </style>
   </head>
   <body class="h-full grid place-items-center">
-    <div id="app">
-      <!-- <app-button>Primary default</app-button>
-      <app-button type="primary">Primary explicit</app-button>
-      <app-button type="secondary">Secondary</app-button>
-      <app-button type="muted">Muted</app-button> -->
-      <app-button :processing="true">Loading</app-button>
-    </div>
+    <div id="app"></div>
 
     <script type="module">
       import App from "./js/components/app.js";
