@@ -4,17 +4,28 @@ import AssignmentAddForm from "./assignment-add-form.js";
 export default {
   components: { AssignmentList, AssignmentAddForm },
   template: `
-    <section class="space-y-6">
-      <AssignmentList :assignments="filters.inProgress" title="In Progress"></AssignmentList>
-      <AssignmentList :assignments="filters.completed" title="Completed"></AssignmentList>
+    <section class="flex gap-8">
+      <AssignmentList :assignments="filters.inProgress" title="In Progress">
+        <AssignmentAddForm @add-assignment="add"></AssignmentAddForm>
+      </AssignmentList>
       
-      <AssignmentAddForm v-on:add-assignment="add"></AssignmentAddForm>
+      <div v-if="showCompleted">
+        <AssignmentList
+          :assignments="filters.completed"
+          title="Completed"
+          canToggle
+          @toggle="showCompleted = !showCompleted"
+        ></AssignmentList>
+      </div>
+
+      
     </section>
 
   `,
   data() {
     return {
       assignments: [],
+      showCompleted: true,
     };
   },
 
