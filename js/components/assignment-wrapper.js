@@ -1,19 +1,14 @@
 import AssignmentList from "./assignment-list.js";
+import AddAssignmentForm from "./add-assignment-form.js";
 
 export default {
-  components: { AssignmentList },
+  components: { AssignmentList, AddAssignmentForm },
   template: `
     <section class="space-y-6">
       <AssignmentList :assignments="filters.inProgress" title="In Progress"></AssignmentList>
       <AssignmentList :assignments="filters.completed" title="Completed"></AssignmentList>
       
-      <!-- on event listener '.prevent' can be added to prevent full page refresh same as e.preventDefault() in JS-->
-      <form @:submit.prevent="add">
-        <div class="border border-gray-600 text-black">
-          <input v-model="newAssignment" placeholder="New assignment..." class="p-2">
-          <button type="submit" class="bg-white p-2 border-l">Add</button>
-        </div>
-      </form>
+      <AddAssignmentForm v-on:add-assignment="add"></AddAssignmentForm>
     </section>
 
   `,
@@ -24,8 +19,6 @@ export default {
         { name: "Read chapter 4", isComplete: false, id: 2 },
         { name: "Turn in homework", isComplete: false, id: 3 },
       ],
-
-      newAssignment: "",
     };
   },
 
@@ -39,14 +32,12 @@ export default {
   },
 
   methods: {
-    add() {
+    add(name) {
       this.assignments.push({
-        name: this.newAssignment,
+        name: name,
         isComplete: false,
         id: this.assignments.length + 1,
       });
-
-      this.newAssignment = "";
     },
   },
 };
