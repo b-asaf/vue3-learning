@@ -14,12 +14,16 @@ export default {
   `,
   data() {
     return {
-      assignments: [
-        { name: "Finish Project", isComplete: false, id: 1, tag: "math" },
-        { name: "Read chapter 4", isComplete: false, id: 2, tag: "science" },
-        { name: "Turn in homework", isComplete: false, id: 3, tag: "math" },
-      ],
+      assignments: [],
     };
+  },
+
+  created() {
+    fetch("http://localhost:3001/assignments")
+      .then((response) => response.json())
+      .then((data) => {
+        this.assignments = data;
+      });
   },
 
   computed: {

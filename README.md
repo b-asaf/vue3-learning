@@ -5,3 +5,6 @@ Learning VUE3 step by step with online tutorial: https://laracasts.com/series/le
 ### Tools:
 
 1. tailwind.css -> for styling
+2. json-server -> for mocking simple BE to simulate data fetching
+
+   - run json-server: `npx json-server [fileName] -p [customPortNum]`
