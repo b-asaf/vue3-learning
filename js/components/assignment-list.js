@@ -11,9 +11,8 @@ export default {
       </h2>
 
       <AssignmentTags
+        v-model:currentTag="currentTag"
         :initial-tags="assignments.map(item => item.tag)"
-        :currentTag="currentTag"
-        @change-tag="currentTag = $event"
       />
 
       <ul class="border border-gray-600 divide-y divide-gray-600 mt-6">
@@ -27,6 +26,10 @@ export default {
     </section>
   `,
 
+  /* 2 ways to use v-model:
+  // 1. v-model="dataToUse" -> in the props of the model a default prop name will be used: 'modelValue'
+  // 2. v-model:propName="dataToUse" -> in the props of the model a custom prop name will be used:'propName'
+  */
   props: {
     assignments: Array,
     title: String,
