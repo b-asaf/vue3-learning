@@ -1,55 +1,63 @@
 <!DOCTYPE html>
-<html lang="eng">
-<head>
+<html lang="eng" class="h-full">
+  <head>
     <meta charset="utf-8" />
-    <title>Episode 2</title>
+    <title>Episode 3</title>
     <script src="https://unpkg.com/vue@3"></script>
-    <style>
-        html, body {
-            height: 100%;
-        }
-        body {
-            display: grid;
-            place-items: center;
-        }
-        .text-red {
-            color: red;
-        }
-        .text-green {
-            color: green;
-        }
-        
-    </style>
-</head>
-<body>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="h-full grid place-items-center">
     <div id="app">
-        <!-- option 1: "v-bind:class" and "v-on:click" -->
-        <button v-bind:class="buttonClasses" v-on:click="toggle">Click Me</button>
-        <!-- option 2 shorten way: ":class" and "@click" -->
-        <button :class="active ? 'text-red' : 'text-green'" @click="toggle2">Click Me 2</button>
+      <section v-show="inProgressAssignments.length">
+        <h2 class="font-bold mb-2">In Progress</h2>
+        <ul>
+          <li v-for="assignment in inProgressAssignments" :key="assignment.id">
+            <label>
+              {{ assignment.name }}
+              <!-- bind the value in the UI to the model => 2 way binding -->
+              <input type="checkbox" v-model="assignment.isComplete" />
+            </label>
+          </li>
+        </ul>
+      </section>
+      <section v-show="completedAssignments.length" class="mt-8">
+        <h2 class="font-bold mb-2">Completed</h2>
+        <ul>
+          <li v-for="assignment in completedAssignments" :key="assignment.id">
+            <label>
+              {{ assignment.name }}
+              <!-- bind the value in the UI to the model -->
+              <input type="checkbox" v-model="assignment.isComplete" />
+            </label>
+          </li>
+        </ul>
+        <!-- <pre>{{assignments}</pre> -->
+      </section>
     </div>
 
     <script>
-        Vue.createApp({
-            // original/first way to structure Vue components, called: options API
-            data() {
-                return {
-                    buttonClasses: 'text-green',
-                    active: false,
-                }
-            },
-             
-            methods: {
-                toggle() {
-                    this.buttonClasses = this.buttonClasses === 'text-green' ? 'text-red' : 'text-green';
-                },
+      let app = {
+        data() {
+          return {
+            assignments: [
+              { name: "Finish Project", isComplete: false, id: 1 },
+              { name: "Read chapter 4", isComplete: false, id: 2 },
+              { name: "Turn in homework", isComplete: false, id: 3 },
+            ],
+          };
+        },
 
-                toggle2() {
-                    this.active = !this.active;
-                }
-            }
-        }).mount('#app');
+        computed: {
+          completedAssignments() {
+            return this.assignments.filter((item) => item.isComplete);
+          },
+          inProgressAssignments() {
+            return this.assignments.filter((item) => !item.isComplete);
+          },
+        },
+      };
+
+      Vue.createApp(app).mount("#app");
     </script>
-</body>
-</html>
+  </body>
 </html>
