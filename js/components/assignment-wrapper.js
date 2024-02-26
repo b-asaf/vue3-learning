@@ -17,11 +17,9 @@ export default {
           @toggle="showCompleted = !showCompleted"
         ></AssignmentList>
       </div>
-
-      
     </section>
-
   `,
+
   data() {
     return {
       assignments: [],

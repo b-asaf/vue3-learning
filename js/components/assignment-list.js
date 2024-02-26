@@ -1,10 +1,11 @@
 import Assignment from "./assignment.js";
 import AssignmentTags from "./assignment-tags.js";
+import Panel from "./panel.js";
 
 export default {
-  components: { Assignment, AssignmentTags },
+  components: { Assignment, AssignmentTags, Panel },
   template: `
-    <section v-show="assignments.length" class="w-60">
+    <Panel v-show="assignments.length" class="w-60">
       <div class="flex justify-between items-start">
         <h2 class="font-bold mb-2">
           {{ title }}
@@ -25,11 +26,17 @@ export default {
           :assignment="assignment"
         >
         </Assignment>
-
       </ul>
       
       <slot></slot>
-    </section>
+
+      <!-- "v-slot" directive have a short version "#"
+      <template v-slot:footer>
+      -->
+      <template #footer>
+        My footer goes here...
+      </template>
+    </Panel>
   `,
 
   /* 2 ways to use v-model:
