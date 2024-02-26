@@ -1,32 +1,49 @@
 <script setup>
-// // Approach A: use mixins for common functionality
-// import flash from '@/mixins/flash'
+// import { ref, watch } from 'vue'
+import { useStorage } from '../composables/useStorage'
 
-// export default {
-//   mixins: [flash]
+// // Option A: all the logic inside the component
+// let food = ref(localStorage.getItem('food'))
+// let age = ref(localStorage.getItem('age'))
+
+// watch(food, (val) => {
+//   write('food', val)
+// })
+
+// watch(age, (val) => {
+//   write('age', val)
+// })
+
+// function write(key, value) {
+//   localStorage.setItem(key, value)
 // }
 
-// // Approach B: use composable (similar to hooks in React) for common functionality
-// import { useFlash } from '@/composables/useFlash'
+// setTimeout(() => {
+//   food.value = 'changed'
+// }, 2000)
 
-// export default {
-//   setup() {
-//     let { flash } = useFlash()
+// Option B
+let food = useStorage('food', 'salad')
+let age = useStorage('age')
 
-//     return { flash }
-//   }
-// }
+let obj = useStorage('obj', { one: 'one' })
 
-// Approach C: move setup object to be an attribute in the script tag
-import { useFlash } from '@/composables/useFlash'
-
-let { flash } = useFlash()
+setTimeout(() => {
+  obj.value.one = 'changed'
+}, 3000)
 </script>
 
 <template>
   <main>
     <p>
-      <button @click="flash('Test', 'it worked')">Click me</button>
+      <!--
+      To modify the value in the local storage it is possible to listen to an event using: "@"
+      What is your favorite food? <input type="text" v-model="food" @input="write('food', food)" />
+      OR watch the value change
+      -->
+      What is your favorite food? <input type="text" v-model="food" />
     </p>
+    <!-- <p>How old are you? <input type="text" v-model="age" @input="write('age', age)" /></p> -->
+    <p>How old are you? <input type="text" v-model="age" /></p>
   </main>
 </template>
