@@ -22,12 +22,13 @@ import { useFlash } from '@/composables/useFlash'
 
 let { flash } = useFlash()
 
-import { counter } from '@/stores/counterStore'
+// import { counter } from '@/stores/counterStore'
 </script>
 
 <template>
   <p>
     <button @click="flash('Yay', 'it worked on the about page', 'info')">Click me</button>
   </p>
-  <p>The current count is {{ counter.count }}</p>
+  <!-- <p>The current count is {{ counter.count }}</p> -->
 </template>
+@/stores/CounterStore

@@ -25,5 +25,9 @@ Basic Vue, introduction to the fundamental of Vue. Vue & Tailwind are pulled as 
 
 Build a `website` using Vue with Vite.
 
-- For now only the basics so to keep it simple TS, JSX, State-management, test tools (unit & UI) **are not** covered
+- For now only the basics so to keep it simple TS, JSX, test tools (unit & UI) **are not** covered
 - The code base is in `vue-project` directory
+- Different approaches to state management:
+  - using local-storage
+  - use global store file
+  - use global store tool - [pinia](https://pinia.vuejs.org/getting-started.html) (official Vue state management tool)
