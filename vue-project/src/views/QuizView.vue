@@ -1,9 +1,10 @@
 <script setup>
-import Quiz from '../components/Quiz/Quiz.vue'
+import Quiz from '@/components/Quiz/QuizWrapper.vue'
+import { state } from '@/stores/quizStore'
 </script>
 
 <template>
   <main>
-    <Quiz :quiz="{ name: 'My First Quiz', questions: [] }" />
+    <Quiz :quiz="state" />
   </main>
 </template>
