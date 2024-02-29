@@ -1,9 +1,8 @@
 <script setup>
 import TeamMember from '@/components/Teams/TeamMember.vue'
+import { useTeamStore } from '@/stores/TeamStore'
 
-defineProps({
-  team: Object
-})
+let team = useTeamStore()
 </script>
 
 <template>
@@ -22,11 +21,10 @@ defineProps({
         :status="member.status"
         :key="member.email"
       />
-      <TeamMember name="Joe Doe" email="joe@doe.com" status="Active" />
     </tbody>
   </table>
 
-  <p v-if="team.spots === team.members.length" class="text-right text-gray-600 italic">
+  <p v-if="!team.spotsRemaining" class="text-right text-gray-600 italic">
     There are no more remaining team spots. Upgrade to add more.
   </p>
 </template>
